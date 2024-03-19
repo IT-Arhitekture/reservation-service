@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.itarhitekture";
+option java_outer_classname = "ReservationProto";
+
+package reservation;
+
+service ReservationService {
+  rpc CreateReservation (CreateReservationRequest) returns (ReservationReply) {}
+  rpc GetReservation (GetReservationRequest) returns (ReservationReply) {}
+  rpc UpdateReservation (UpdateReservationRequest) returns (ReservationReply) {}
+  rpc DeleteReservation (DeleteReservationRequest) returns (DeleteReservationReply) {}
+}
+
+message CreateReservationRequest {
+  string userId = 1;
+  string restaurantId = 2;
+  int64 dateAndTime = 3;
+}
+
+message GetReservationRequest {
+  int64 id = 1;
+}
+
+message UpdateReservationRequest {
+  int64 id = 1;
+  string userId = 2;
+  string restaurantId = 3;
+  int64 dateAndTime = 4;
+}
+
+message DeleteReservationRequest {
+  int64 id = 1;
+}
+
+message ReservationReply {
+  int64 id = 1;
+  string userId = 2;
+  string restaurantId = 3;
+  int64 dateAndTime = 4;
+}
+
+message DeleteReservationReply {
+  bool success = 1;
+}
